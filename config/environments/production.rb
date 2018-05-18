@@ -65,7 +65,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'blog-learning-rails.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'simple-garden.herokuapp.com' }
 
   ActionMailer::Base.smtp_settings = {
    :address        => "smtp.sendgrid.net",
@@ -73,7 +73,7 @@ Rails.application.configure do
    :authentication => :plain,
    :user_name      => ENV['SENDGRID_USERNAME'],
    :password       => ENV['SENDGRID_PASSWORD'],
-   :domain         => "blog-learning-rails.herokuapp.com"}
+   :domain         => "simple-garden.herokuapp.com"}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
