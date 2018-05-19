@@ -1,0 +1,55 @@
+<%= form_with(model: plant, local: true) do |form| %>
+  <% if plant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plant.errors.count, "thing") %> stopped this plant from being sprouted:</h2>
+
+      <ul>
+      <% plant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% possible_plants = [
+    '😀',
+    '🤖'
+  ] %>
+
+  <div class="field possible_plants">
+    <% possible_plants.each_with_index do|plant, i| %>
+      <input type="radio" name="plant[specimen]" id="specimen_<%= i %>" value="<%= plant %>" />
+      <label for="specimen_<%= i %>"><%= plant %></label>
+    <% end %>
+  </div>
+
+  <div id="dateSlider"></div>
+
+  <div class="field">
+    <%= form.label :sprout %>
+    <%= form.date_select :sprout %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wither %>
+    <%= form.date_select :wither %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gardener_id %>
+    <%= form.text_field :gardener_id, 'value' => current_gardener.id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<script>
+$("#dateSlider").dateRangeSlider({
+  bounds:{
+    min: new Date(2018, 0, 1),
+    max: new Date(2018, 12, 31)
+  }});
+</script>

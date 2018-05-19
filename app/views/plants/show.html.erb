@@ -1,0 +1,18 @@
+<% if @plant.sprout.to_date.past? %>
+  <p class="specimen">💭</p>
+  <p>Something was planted here <%= timeago_tag @plant.created_at, :nojs => true %> by <%= image_tag @plant.gardener.face, 'class' => 'face face--tiny' %> <%= @plant.gardener.nickname %> and it flowered for <%= pluralize (@plant.sprout..@plant.wither).count, 'day' %> in <%= Date::MONTHNAMES[@plant.sprout.month] %> — remember?</p>
+<% elsif @plant.sprout.to_date.today? %>
+  <p class="specimen grow"><%= @plant.specimen %></p>
+
+  <p>I was planted by <%= image_tag @plant.gardener.face, 'class' => 'face face--tiny' %> <%= @plant.gardener.nickname %> <%= timeago_tag @plant.created_at, :nojs => true %> and will be flowering here for <% if @plant.wither.today? %>today only — isn't that special...?!<% else %><%= timeago_tag @plant.wither+1, :nojs => true %><% end %></p>
+<% else %>
+  <p class="specimen">🕳</p>
+
+  <p>Something was planted by <%= image_tag @plant.gardener.face, 'class' => 'face face--tiny' %> <%= @plant.gardener.nickname %> <%= timeago_tag @plant.created_at, :nojs => true %>, and will flower here for <%= pluralize (@plant.sprout..@plant.wither+1).count, 'day' %> sometime in <%= Date::MONTHNAMES[@plant.sprout.month] %></p>
+<% end %>
+
+<% if current_gardener == @plant.gardener %>
+  <small>(Because you planted this, you can also <%= link_to "un-plant", plant_path(@plant), data: { confirm: "Are you sure you want to pull this plant?" }, method: :delete %> it.)</p>
+<% end %>
+
+<%= link_to 'back to the garden', plants_path %>

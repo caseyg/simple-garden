@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :gardeners
+  resources :plants
   resources :articles do
     resources :comments
   end

@@ -1,0 +1,8 @@
+<ul class="garden">
+<% @plants.order('random()').each do |plant| %>
+  <li><%= link_to plant.specimen, plant %></li>
+<% end %>
+</ul>
+
+<h2>Ready to garden?</h2>
+<%= link_to '🌱 New Plant', new_plant_path, :class => 'button' %>

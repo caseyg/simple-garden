@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  specimen: MyString
+  sprout: 2018-05-18
+  wither: 2018-05-18
+  user: one
+
+two:
+  specimen: MyString
+  sprout: 2018-05-18
+  wither: 2018-05-18
+  user: two
